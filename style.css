@@ -1,0 +1,254 @@
+:root{
+  --bg:#070812;
+  --card:rgba(255,255,255,.06);
+  --card2:rgba(255,255,255,.09);
+  --text:#e9ecff;
+  --muted:rgba(233,236,255,.65);
+  --stroke:rgba(255,255,255,.12);
+  --glow1:#6d5cff;
+  --glow2:#2ff7c6;
+  --danger:#ff4d6d;
+  --ok:#6d5cff;
+  --radius:18px;
+  --shadow: 0 20px 60px rgba(0,0,0,.45);
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+.bg{position:fixed; inset:0; z-index:-3}
+.noise{
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+  opacity:.25;
+}
+.stars{
+  position:absolute; inset:-40% -40%;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 55% 30%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.6) 0 1px, transparent 2px),
+    radial-gradient(circle at 35% 80%, rgba(255,255,255,.65) 0 1px, transparent 2px);
+  background-size: 240px 240px;
+  opacity:.35;
+  filter: blur(.2px);
+  animation: drift 18s linear infinite;
+}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(6%,3%,0)}}
+
+.glow{position:absolute; width:520px; height:520px; border-radius:50%; filter: blur(80px); opacity:.55}
+.g1{left:-140px; top:-120px; background:var(--glow1)}
+.g2{right:-160px; bottom:-160px; background:var(--glow2); opacity:.35}
+
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 16px 6px;
+  position:sticky; top:0; backdrop-filter: blur(10px);
+  background: linear-gradient(to bottom, rgba(7,8,18,.7), rgba(7,8,18,.2));
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.brand{display:flex; gap:10px; align-items:center}
+.logo{
+  width:40px; height:40px; border-radius:14px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, rgba(109,92,255,.35), rgba(47,247,198,.18));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  font-size:18px;
+}
+.name{font-weight:800; letter-spacing:.2px}
+.tag{font-size:12px; color:var(--muted)}
+
+.shell{max-width:520px; margin:0 auto; padding:12px 16px 24px}
+.card{
+  background: linear-gradient(180deg, var(--card), rgba(255,255,255,.03));
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.hidden{display:none}
+
+h1{margin:0 0 10px; font-size:22px}
+h2{margin:0 0 8px; font-size:18px}
+p{margin:10px 0}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.center{text-align:center}
+
+.form{display:grid; gap:12px; margin-top:12px}
+label{display:grid; gap:6px; font-size:13px; color:var(--muted)}
+input,select{
+  height:44px; border-radius:14px;
+  padding:0 12px;
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text);
+  outline:none;
+}
+input:focus,select:focus{border-color:rgba(109,92,255,.55); box-shadow:0 0 0 4px rgba(109,92,255,.14)}
+
+.actions{display:flex; gap:10px; margin-top:14px}
+button{
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color:var(--text);
+  font-weight:700;
+  padding:0 14px;
+  cursor:pointer;
+}
+button:active{transform: translateY(1px)}
+.primary{
+  background: linear-gradient(135deg, rgba(109,92,255,.95), rgba(47,247,198,.55));
+  border-color: rgba(255,255,255,.18);
+}
+.ghost{background: rgba(255,255,255,.04)}
+.danger{border-color: rgba(255,77,109,.35); color:#ffd1d9}
+.iconBtn{
+  width:44px; padding:0;
+  display:grid; place-items:center;
+}
+
+.tips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.pill{
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+
+.row{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
+.coins{display:grid; justify-items:end; gap:2px}
+.coinValue{font-weight:800}
+
+.orbit{
+  margin-top:14px;
+  display:grid;
+  gap:14px;
+  justify-items:center;
+}
+.planet{
+  width:110px; height:110px; border-radius:50%;
+  position:relative;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.35), rgba(109,92,255,.35) 35%, rgba(0,0,0,.25) 68%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 20px 70px rgba(109,92,255,.16);
+  animation: float 3.6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.planetCore{
+  position:absolute; inset:14px;
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 25%, rgba(47,247,198,.35), rgba(255,255,255,.10) 55%, rgba(0,0,0,.2));
+  border:1px solid rgba(255,255,255,.10);
+}
+.ring{
+  position:absolute; left:-18px; top:48px;
+  width:146px; height:30px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  transform: rotate(-12deg);
+  filter: blur(.1px);
+}
+.r2{top:56px; opacity:.5; transform: rotate(8deg)}
+
+.profile{
+  width:100%;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  padding:14px;
+}
+.avatar{
+  width:52px; height:52px; border-radius:16px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:18px;
+  margin-bottom:10px;
+}
+.pname{font-weight:900; font-size:18px}
+.pmeta{color:var(--muted); font-size:13px; margin-top:2px}
+.ptags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.tagChip{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.pdesc{margin-top:10px; color:rgba(233,236,255,.82); line-height:1.35}
+
+.matchBox{
+  display:flex; gap:12px; align-items:center;
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+.matchAvatar{
+  width:56px; height:56px; border-radius:18px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:20px;
+}
+.mName{font-size:18px; font-weight:900}
+
+.chatTop{
+  display:flex; align-items:center; gap:10px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:10px;
+}
+.chatTitle{flex:1}
+.ctName{font-weight:900}
+.chatBody{
+  height:52vh;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:6px 0;
+}
+.bubble{
+  max-width:78%;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  line-height:1.35;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.me{align-self:flex-end; background: rgba(109,92,255,.22); border-color: rgba(109,92,255,.25)}
+.them{align-self:flex-start}
+
+.chatInput{
+  display:flex; gap:10px; margin-top:10px;
+}
+.chatInput input{flex:1}
+
+/* Themes */
+body.theme-mono{
+  --glow1:#ffffff;
+  --glow2:#ffffff;
+  --ok:#ffffff;
+}
+body.theme-sunset{
+  --glow1:#ff6b6b;
+  --glow2:#ffd93d;
+  --ok:#ff6b6b;
+}
