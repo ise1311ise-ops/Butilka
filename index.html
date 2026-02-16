@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon Orbit — знакомься</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="noise"></div>
+    <div class="stars"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">◎</div>
+      <div class="brandText">
+        <div class="name">Neon Orbit</div>
+        <div class="tag">лови сигнал • общайся • матчься</div>
+      </div>
+    </div>
+    <button class="iconBtn" id="btnSettings" title="Настройки">⚙</button>
+  </header>
+
+  <main class="shell">
+    <!-- Onboarding -->
+    <section class="card" id="screenOnboarding">
+      <h1>Поймай свой сигнал</h1>
+      <p class="muted">
+        Это демо Mini App без сервера: профили и чат сохраняются на устройстве.
+        Подходит, чтобы быстро запустить стиль/UX и потом подключить бэкенд.
+      </p>
+
+      <div class="form">
+        <label>
+          Никнейм
+          <input id="inName" maxlength="18" placeholder="например, Nova_7" />
+        </label>
+
+        <label>
+          Я ищу
+          <select id="inGoal">
+            <option value="chat">общение</option>
+            <option value="dating">знакомства</option>
+            <option value="friends">друзей</option>
+          </select>
+        </label>
+
+        <label>
+          Возраст (18+)
+          <input id="inAge" type="number" min="18" max="99" value="18" />
+        </label>
+
+        <button class="primary" id="btnStart">Старт</button>
+      </div>
+
+      <div class="tips">
+        <div class="pill">🔒 Не вводи личные данные</div>
+        <div class="pill">🚫 Есть кнопка блок/жалоба</div>
+        <div class="pill">✨ Стиль можно менять под твой бренд</div>
+      </div>
+    </section>
+
+    <!-- Discover -->
+    <section class="card hidden" id="screenDiscover">
+      <div class="row">
+        <div>
+          <h2>Сканер сигналов</h2>
+          <div class="muted" id="helloLine"></div>
+        </div>
+        <div class="coins">
+          <span class="muted">энергия</span>
+          <span class="coinValue" id="energy">⚡ 10</span>
+        </div>
+      </div>
+
+      <div class="orbit">
+        <div class="planet" id="planet">
+          <div class="planetCore"></div>
+          <div class="ring"></div>
+          <div class="ring r2"></div>
+        </div>
+
+        <div class="profile" id="profileCard">
+          <div class="avatar" id="avatar">★</div>
+          <div class="pname" id="pname">…</div>
+          <div class="pmeta" id="pmeta">…</div>
+          <div class="ptags" id="ptags"></div>
+          <div class="pdesc" id="pdesc"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="ghost danger" id="btnSkip">Пропуск</button>
+        <button class="primary" id="btnLike">Лови сигнал</button>
+      </div>
+
+      <div class="muted small center">
+        Подсказка: это демо. Для реальных совпадений нужен сервер/матчинг.
+      </div>
+    </section>
+
+    <!-- Match -->
+    <section class="card hidden" id="screenMatch">
+      <h2>Совпадение!</h2>
+      <div class="matchBox">
+        <div class="matchAvatar" id="mAvatar">★</div>
+        <div>
+          <div class="mName" id="mName">…</div>
+          <div class="muted" id="mMeta">…</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="ghost" id="btnBackToDiscover">Ещё сигналы</button>
+        <button class="primary" id="btnOpenChat">Открыть чат</button>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="card hidden" id="screenChat">
+      <div class="chatTop">
+        <button class="iconBtn" id="btnChatBack" title="Назад">←</button>
+        <div class="chatTitle">
+          <div class="ctName" id="chatName">…</div>
+          <div class="muted small" id="chatStatus">в эфире</div>
+        </div>
+        <button class="iconBtn danger" id="btnBlock" title="Блок/жалоба">⛔</button>
+      </div>
+
+      <div class="chatBody" id="chatBody"></div>
+
+      <div class="chatInput">
+        <input id="msg" maxlength="240" placeholder="Напиши сообщение…" />
+        <button class="primary" id="btnSend">Отправить</button>
+      </div>
+
+      <div class="muted small center">
+        Если собеседник ведёт себя плохо — жми ⛔.
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="card hidden" id="screenSettings">
+      <h2>Настройки</h2>
+      <div class="form">
+        <label>
+          Тема
+          <select id="inTheme">
+            <option value="neon">Neon Orbit</option>
+            <option value="mono">Mono Dark</option>
+            <option value="sunset">Sunset</option>
+          </select>
+        </label>
+
+        <label>
+          Режим
+          <select id="inMode">
+            <option value="safe">Безопасный (фильтр слов)</option>
+            <option value="normal">Обычный</option>
+          </select>
+        </label>
+
+        <button class="ghost" id="btnReset">Сбросить демо-данные</button>
+        <button class="primary" id="btnCloseSettings">Закрыть</button>
+      </div>
+
+      <p class="muted small">
+        Для подключения Telegram WebApp: на реальном проекте ты будешь читать
+        user данные через <code>window.Telegram.WebApp.initDataUnsafe</code>.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
